@@ -1,156 +1,997 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Second Wind Consulting</title>
-<style>
-:root{--bg:#050a18;--card:rgba(10,20,45,.72);--line:rgba(96,165,250,.22);--tx:#e6eefc;--mut:#8fa6cc;--blue:#3b82f6;--glow:#38bdf8;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*,*:before,*:after{box-sizing:inherit}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6;min-height:100vh}
-#aurora{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:.75;pointer-events:none}
-header,main,footer{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 20px}
-header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding-top:22px;padding-bottom:12px}
-.logo{font-weight:800;font-size:20px;letter-spacing:.3px;text-shadow:0 0 18px var(--glow)}
-.logo span{color:var(--glow)}
-nav{display:flex;gap:6px;padding:5px;border:1px solid var(--line);border-radius:999px;background:var(--card);backdrop-filter:blur(10px);box-shadow:0 8px 30px rgba(0,0,0,.5)}
-nav button{background:none;border:0;color:var(--mut);font:600 14px inherit;font-family:inherit;padding:9px 18px;border-radius:999px;cursor:pointer;transition:.25s}
-nav button:hover{color:var(--tx)}
-nav button.on{color:#fff;background:linear-gradient(135deg,#2563eb,#0ea5e9);box-shadow:0 0 22px rgba(56,189,248,.55)}
-.tab{display:none;padding:40px 0 70px}.tab.on{display:block;animation:in .6s ease}
-@keyframes in{from{opacity:0;transform:translateY(14px)}}
-h1{font-size:clamp(32px,6vw,56px);line-height:1.1;margin:0 0 16px;text-shadow:0 0 40px rgba(56,189,248,.35)}
-h2{font-size:28px;margin:48px 0 18px}
-p{color:var(--mut);margin:0 0 14px}
-.lead{font-size:18px;max-width:640px}
-.grid{display:grid;gap:18px}
-.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;backdrop-filter:blur(10px);box-shadow:0 12px 40px rgba(0,0,0,.55);transition:.3s}
-.card:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(0,0,0,.6),0 0 30px rgba(59,130,246,.3);border-color:rgba(56,189,248,.5)}
-.metric{text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.55),0 0 36px rgba(56,189,248,.25);border-color:rgba(56,189,248,.45)}
-.metric b{display:block;font-size:44px;color:#fff;text-shadow:0 0 24px var(--glow)}
-.metric small{color:var(--mut);text-transform:uppercase;letter-spacing:1.5px;font-size:12px}
-.pic{height:170px;border-radius:12px;margin-bottom:16px;display:flex;align-items:flex-end;padding:14px;font-weight:700;font-size:13px;color:#cfe4ff;box-shadow:inset 0 -60px 60px rgba(0,0,0,.55),0 6px 20px rgba(0,0,0,.5)}
-.tag{display:inline-block;font-size:12px;color:var(--glow);border:1px solid var(--line);padding:2px 10px;border-radius:99px;margin-bottom:8px}
-.card h3{margin:0 0 6px;font-size:19px}
-.person{text-align:center}
-.av{width:92px;height:92px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;font-size:28px;font-weight:800;background:linear-gradient(135deg,#1d4ed8,#38bdf8);box-shadow:0 0 28px rgba(56,189,248,.5)}
-.role{color:var(--glow);font-size:13px;font-weight:600;margin-bottom:8px}
-.goal{border-color:rgba(56,189,248,.5);box-shadow:0 12px 40px rgba(0,0,0,.55),0 0 44px rgba(59,130,246,.3)}
-form{display:grid;gap:14px;max-width:560px}
-label{font-size:13px;color:var(--mut);display:grid;gap:6px}
-input,textarea{background:rgba(5,12,30,.8);border:1px solid var(--line);border-radius:12px;color:var(--tx);padding:12px 14px;font:inherit}
-input:focus,textarea:focus{outline:0;border-color:var(--glow);box-shadow:0 0 0 3px rgba(56,189,248,.25),0 0 20px rgba(56,189,248,.3)}
-.btn{border:0;cursor:pointer;color:#fff;font:700 15px inherit;font-family:inherit;padding:14px 22px;border-radius:12px;background:linear-gradient(135deg,#2563eb,#0ea5e9);box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 26px rgba(56,189,248,.5);transition:.25s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.5),0 0 38px rgba(56,189,248,.8)}
-#ok{display:none;color:#7dd3fc}
-footer{padding-bottom:40px;color:var(--mut);font-size:13px;text-align:center}
-#loader{position:fixed;inset:0;z-index:50;background:#050a18;display:flex;align-items:center;justify-content:center;transition:opacity .5s}
-#loader.off{opacity:0;pointer-events:none}
-#bal{position:absolute;inset:0;width:100%;height:100%}
-#loader div{position:relative;font-size:22px;font-weight:800;letter-spacing:6px;text-transform:uppercase;text-shadow:0 0 24px #38bdf8,0 4px 20px #000;animation:pulse 1.2s infinite alternate}
-@keyframes pulse{from{opacity:.55}to{opacity:1}}
-.stats{display:flex;flex-wrap:wrap;margin:36px 0 8px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.stat{flex:1 1 200px;padding:30px 12px;text-align:center}
-.stat+.stat{border-left:1px solid var(--line)}
-.stat b{display:block;font-size:clamp(40px,7vw,64px);font-weight:800;line-height:1.1;background:linear-gradient(180deg,#fff,#7dd3fc);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 22px rgba(56,189,248,.55))}
-.stat small{color:var(--mut);text-transform:uppercase;letter-spacing:1.5px;font-size:12px}
-.stories{display:grid;gap:48px}
-.story{display:flex;gap:36px;align-items:center}
-.story:nth-child(even){flex-direction:row-reverse}
-.story .pic{flex:0 0 46%;height:260px;margin:0;border-radius:22px;padding:18px;box-shadow:inset 0 -90px 70px rgba(0,0,0,.5),0 22px 50px rgba(0,0,0,.6),0 0 40px rgba(59,130,246,.25)}
-.story .txt{flex:1}
-.story h3{font-size:26px;margin:0 0 10px}
-.goal{margin:28px 0 0;padding:4px 0 4px 24px;border-left:3px solid var(--glow);box-shadow:-12px 0 30px -14px rgba(56,189,248,.7)}
-.goal p{color:var(--tx);font-size:clamp(20px,3vw,28px);line-height:1.4;margin:6px 0 0}
-.people{display:flex;flex-wrap:wrap;gap:32px 56px}
-.person{flex:1 1 260px;display:flex;gap:18px;align-items:flex-start;text-align:left}
-.person .av{margin:0;flex:none;width:76px;height:76px;font-size:24px}
-.person h3{margin:0 0 2px;font-size:19px}
-@media(max-width:760px){.story,.story:nth-child(even){flex-direction:column;align-items:stretch;gap:18px}.story .pic{flex:none;height:210px}.stat+.stat{border-left:0;border-top:1px solid var(--line)}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Revive Consulting</title>
+  <style>
+    :root {
+      --bg: #050a18;
+      --card: rgba(10, 20, 45, .72);
+      --line: rgba(96, 165, 250, .22);
+      --tx: #e6eefc;
+      --mut: #8fa6cc;
+      --blue: #3b82f6;
+      --glow: #38bdf8;
+      color-scheme: dark;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--tx);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh
+    }
+
+    #aurora {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: .75;
+      pointer-events: none
+    }
+
+    header,
+    main,
+    footer {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 22px;
+      padding-bottom: 12px
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: .3px;
+      text-shadow: 0 0 18px var(--glow)
+    }
+
+    .logo span {
+      color: var(--glow)
+    }
+
+    nav {
+      display: flex;
+      gap: 6px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .5)
+    }
+
+    nav button {
+      background: none;
+      border: 0;
+      color: var(--mut);
+      font: 600 14px inherit;
+      font-family: inherit;
+      padding: 9px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: .25s
+    }
+
+    nav button:hover {
+      color: var(--tx)
+    }
+
+    nav button.on {
+      color: #fff;
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      box-shadow: 0 0 22px rgba(56, 189, 248, .55)
+    }
+
+    .tab {
+      display: none;
+      padding: 40px 0 70px
+    }
+
+    .tab.on {
+      display: block;
+      animation: in .6s ease
+    }
+
+    @keyframes in {
+      from {
+        opacity: 0;
+        transform: translateY(14px)
+      }
+    }
+
+    h1 {
+      font-size: clamp(32px, 6vw, 56px);
+      line-height: 1.1;
+      margin: 0 0 16px;
+      text-shadow: 0 0 40px rgba(56, 189, 248, .35)
+    }
+
+    h2 {
+      font-size: 28px;
+      margin: 48px 0 18px
+    }
+
+    p {
+      color: var(--mut);
+      margin: 0 0 14px
+    }
+
+    .lead {
+      font-size: 18px;
+      max-width: 640px
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px
+    }
+
+    .g3 {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+    }
+
+    .g2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .55);
+      transition: .3s
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 50px rgba(0, 0, 0, .6), 0 0 30px rgba(59, 130, 246, .3);
+      border-color: rgba(56, 189, 248, .5)
+    }
+
+    .metric {
+      text-align: center;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .55), 0 0 36px rgba(56, 189, 248, .25);
+      border-color: rgba(56, 189, 248, .45)
+    }
+
+    .metric b {
+      display: block;
+      font-size: 44px;
+      color: #fff;
+      text-shadow: 0 0 24px var(--glow)
+    }
+
+    .metric small {
+      color: var(--mut);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 12px
+    }
+
+    .pic {
+      height: 170px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-end;
+      padding: 14px;
+      font-weight: 700;
+      font-size: 13px;
+      color: #cfe4ff;
+      box-shadow: inset 0 -60px 60px rgba(0, 0, 0, .55), 0 6px 20px rgba(0, 0, 0, .5)
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--glow);
+      border: 1px solid var(--line);
+      padding: 2px 10px;
+      border-radius: 99px;
+      margin-bottom: 8px
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 19px
+    }
+
+    .person {
+      text-align: center
+    }
+
+    .av {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1d4ed8, #38bdf8);
+      box-shadow: 0 0 28px rgba(56, 189, 248, .5)
+    }
+
+    .role {
+      color: var(--glow);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px
+    }
+
+    .goal {
+      border-color: rgba(56, 189, 248, .5);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, .55), 0 0 44px rgba(59, 130, 246, .3)
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      max-width: 560px
+    }
+
+    label {
+      font-size: 13px;
+      color: var(--mut);
+      display: grid;
+      gap: 6px
+    }
+
+    input,
+    textarea,
+    select {
+      background: rgba(5, 12, 30, .8);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--tx);
+      padding: 12px 14px;
+      font: inherit
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: 0;
+      border-color: var(--glow);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, .25), 0 0 20px rgba(56, 189, 248, .3)
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      color: #fff;
+      font: 700 15px inherit;
+      font-family: inherit;
+      padding: 14px 22px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .5), 0 0 26px rgba(56, 189, 248, .5);
+      transition: .25s
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .5), 0 0 38px rgba(56, 189, 248, .8)
+    }
+
+    .ok {
+      display: none;
+      color: #7dd3fc
+    }
+
+    footer {
+      padding-bottom: 40px;
+      color: var(--mut);
+      font-size: 13px;
+      text-align: center
+    }
+
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: #050a18;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .5s
+    }
+
+    #loader.off {
+      opacity: 0;
+      pointer-events: none
+    }
+
+    #bal {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%
+    }
+
+    #loader div {
+      position: relative;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      text-shadow: 0 0 24px #38bdf8, 0 4px 20px #000;
+      animation: pulse 1.2s infinite alternate
+    }
+
+    @keyframes pulse {
+      from {
+        opacity: .55
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 36px 0 8px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line)
+    }
+
+    .stat {
+      flex: 1 1 200px;
+      padding: 30px 12px;
+      text-align: center
+    }
+
+    .stat+.stat {
+      border-left: 1px solid var(--line)
+    }
+
+    .stat b {
+      display: block;
+      font-size: clamp(40px, 7vw, 64px);
+      font-weight: 800;
+      line-height: 1.1;
+      background: linear-gradient(180deg, #fff, #7dd3fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 22px rgba(56, 189, 248, .55))
+    }
+
+    .stat small {
+      color: var(--mut);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 12px
+    }
+
+    .stories {
+      display: grid;
+      gap: 48px
+    }
+
+    .story {
+      display: flex;
+      gap: 36px;
+      align-items: center
+    }
+
+    .story:nth-child(even) {
+      flex-direction: row-reverse
+    }
+
+    .story .pic {
+      flex: 0 0 46%;
+      height: 260px;
+      margin: 0;
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: inset 0 -90px 70px rgba(0, 0, 0, .5), 0 22px 50px rgba(0, 0, 0, .6), 0 0 40px rgba(59, 130, 246, .25)
+    }
+
+    .story .txt {
+      flex: 1
+    }
+
+    .story h3 {
+      font-size: 26px;
+      margin: 0 0 10px
+    }
+
+    .goal {
+      margin: 28px 0 0;
+      padding: 4px 0 4px 24px;
+      border-left: 3px solid var(--glow);
+      box-shadow: -12px 0 30px -14px rgba(56, 189, 248, .7)
+    }
+
+    .goal p {
+      color: var(--tx);
+      font-size: clamp(20px, 3vw, 28px);
+      line-height: 1.4;
+      margin: 6px 0 0
+    }
+
+    .people {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px 56px
+    }
+
+    .person {
+      flex: 1 1 260px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      text-align: left
+    }
+
+    .person .av {
+      margin: 0;
+      flex: none;
+      width: 76px;
+      height: 76px;
+      font-size: 24px
+    }
+
+    .person h3 {
+      margin: 0 0 2px;
+      font-size: 19px
+    }
+
+    @media(max-width:760px) {
+
+      .story,
+      .story:nth-child(even) {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px
+      }
+
+      .story .pic {
+        flex: none;
+        height: 210px
+      }
+
+      .stat+.stat {
+        border-left: 0;
+        border-top: 1px solid var(--line)
+      }
+    }
+
+    nav {
+      max-width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none
+    }
+
+    nav::-webkit-scrollbar {
+      display: none
+    }
+
+    nav button {
+      white-space: nowrap;
+      padding: 9px 14px
+    }
+
+    .btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px
+    }
+
+    .btn.alt {
+      background: transparent;
+      border: 1px solid var(--glow);
+      box-shadow: none
+    }
+
+    .note {
+      border-left: 3px solid var(--glow);
+      padding: 4px 0 4px 16px;
+      margin: 24px 0
+    }
+
+    .note p {
+      margin: 0
+    }
+
+    .kv {
+      margin: 0 0 8px
+    }
+
+    .kv b {
+      color: var(--tx)
+    }
+
+    .faq {
+      display: grid;
+      gap: 12px;
+      max-width: 720px
+    }
+
+    details {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 18px
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600
+    }
+
+    details p {
+      margin: 10px 0 0
+    }
+
+    select option {
+      background: #0a1430
+    }
+
+    .card {
+      border-radius: 10px;
+      background: rgba(10, 20, 45, .5);
+      backdrop-filter: none;
+      box-shadow: none;
+      padding: 20px;
+      transition: border-color .2s
+    }
+
+    .card:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: rgba(56, 189, 248, .4)
+    }
+
+    .card.pick {
+      border-color: rgba(56, 189, 248, .55)
+    }
+
+    .rows {
+      border-bottom: 1px solid var(--line)
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      gap: 4px 32px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line)
+    }
+
+    .row h3 {
+      margin: 0;
+      font-size: 18px
+    }
+
+    .row p {
+      margin: 0
+    }
+
+    @media(max-width:760px) {
+      .row {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div id="loader"><canvas id="bal"></canvas><div>Loading</div></div>
-<canvas id="aurora"></canvas>
-
-<header>
-  <div class="logo">Second<span>Wind</span></div>
-  <nav>
-    <button class="on" data-t="proof">Proof</button>
-    <button data-t="about">About</button>
-    <button data-t="contact">Contact</button>
-  </nav>
-</header>
-
-<main>
-<section id="proof" class="tab on">
-  <h1>We help struggling small businesses<br>get back on their feet.</h1>
-  <p class="lead">Real turnarounds, measured in real numbers. Here is what our work has delivered so far.</p>
-  <div class="stats">
-    <div class="stat"><b data-n="47">0</b><small>Businesses helped</small></div>
-    <div class="stat"><b data-n="2400000" data-p="$">0</b><small>Total tangible growth</small></div>
-    <div class="stat"><b data-n="85" data-s="%">0</b><small>Still thriving today</small></div>
+  <div id="loader"><canvas id="bal"></canvas>
+    <div>Loading</div>
   </div>
-  <h2>Business stories</h2>
-  <div class="stories">
-    <article class="story"><div class="pic" style="background:linear-gradient(135deg,#1e3a8a,#0ea5e9)"><span>Maple &amp; Rye Bakery</span></div><div class="txt"><span class="tag">+$180K revenue</span><h3>Maple &amp; Rye Bakery</h3><p>Weeks from closing, the bakery was losing money on wholesale orders. We reworked pricing, cut waste and launched a weekend subscription box. Within a year it was profitable again.</p></div></article>
-    <article class="story"><div class="pic" style="background:linear-gradient(135deg,#172554,#38bdf8)"><span>Northside Auto Repair</span></div><div class="txt"><span class="tag">+62% customers</span><h3>Northside Auto Repair</h3><p>A strong team with almost no online presence. We set up booking, reviews and a simple follow-up routine, which filled the schedule and brought back lapsed customers.</p></div></article>
-    <article class="story"><div class="pic" style="background:linear-gradient(135deg,#0c4a6e,#2563eb)"><span>Bloom Florist</span></div><div class="txt"><span class="tag">Debt cut by 40%</span><h3>Bloom Florist</h3><p>Heavy supplier debt was draining cash. We renegotiated terms, trimmed inventory and added corporate accounts, restoring healthy cash flow in six months.</p></div></article>
-  </div>
-  <p style="margin-top:28px;font-size:13px">Sample figures and businesses shown as placeholders. Replace with your real results and photos.</p>
-</section>
+  <canvas id="aurora"></canvas>
 
-<section id="about" class="tab">
-  <h1>About us</h1>
-  <blockquote class="goal"><span class="tag">Our goal</span><p>To give small businesses on the edge of failure the expertise they could never afford alone, so good ideas and hard-working owners get a real second chance.</p></blockquote>
-  <h2>Founders</h2>
-  <div class="people">
-    <div class="person"><div class="av">AK</div><div><h3>Founder One</h3><div class="role">Co-Founder &amp; Lead Consultant</div><p>Short bio: background in operations and turnaround strategy.</p></div></div>
-    <div class="person"><div class="av">SR</div><div><h3>Founder Two</h3><div class="role">Co-Founder &amp; Finance Lead</div><p>Short bio: background in small business finance and planning.</p></div></div>
-  </div>
-  <h2>Advisors</h2>
-  <div class="people">
-    <div class="person"><div class="av">MH</div><div><h3>Advisor One</h3><div class="role">Advisor, Marketing</div><p>Short bio: helps businesses reach customers on a small budget.</p></div></div>
-    <div class="person"><div class="av">LT</div><div><h3>Advisor Two</h3><div class="role">Advisor, Legal &amp; Operations</div><p>Short bio: guides restructuring, contracts and compliance.</p></div></div>
-  </div>
-</section>
+  <header>
+    <div class="logo">Re<span>vive</span></div>
+    <nav>
+      <button class="on" data-t="home">Home</button>
+      <button data-t="about">About</button>
+      <button data-t="services">Services</button>
+      <button data-t="process">Process</button>
+      <button data-t="proof">Proof</button>
+      <button data-t="join">Join</button>
+      <button data-t="faq">FAQ</button>
+      <button data-t="contact">Partner</button>
+    </nav>
+  </header>
 
-<section id="contact" class="tab">
-  <h1>Let's talk</h1>
-  <p class="lead">Tell us about your business and where it's struggling. We'll get back to you.</p>
-  <form id="f" style="margin-top:26px" class="card">
-    <label>Your name<input required name="name"></label>
-    <label>Email<input required type="email" name="email"></label>
-    <label>Business name<input name="biz"></label>
-    <label>What's going on?<textarea required rows="5" name="msg"></textarea></label>
-    <button class="btn" type="submit">Send message</button>
-    <p id="ok">Thanks! Your message was received.</p>
-  </form>
-</section>
-</main>
-<footer>&copy; 2026 Second Wind Consulting</footer>
+  <main>
+    <section id="home" class="tab on">
+      <h1>We help struggling businesses<br>become profitable.</h1>
+      <p class="lead">Student-led, advisor-backed, built for small businesses.</p>
+      <div class="btns">
+        <button class="btn" data-go="contact">Partner With Us</button>
+        <button class="btn alt" data-go="join">Join Our Team</button>
+      </div>
+      <h2>Why small businesses fail</h2>
+      <div class="rows">
+        <div class="row">
+          <h3>Thin margins</h3>
+          <p>Many owners work full time and still keep almost nothing, because prices and costs have drifted apart.</p>
+        </div>
+        <div class="row">
+          <h3>Hidden waste</h3>
+          <p>Spoilage, idle hours and unused stock quietly drain cash without ever showing up as a single big problem.
+          </p>
+        </div>
+        <div class="row">
+          <h3>No financial visibility</h3>
+          <p>Without a clear view of the numbers, owners decide by instinct and notice trouble only when cash runs out.
+          </p>
+        </div>
+      </div>
+      <blockquote class="goal"><span class="tag">Our mission</span>
+        <p>Affordable, structured consulting for small businesses that could not otherwise pay for it, delivered by
+          students learning on real financial problems.</p>
+      </blockquote>
+    </section>
 
-<script>
-function GL(canvas, ver, vs, fs, opt){
-  const gl = canvas.getContext(ver===2?'webgl2':'webgl', opt||{});
-  const sh=(t,s)=>{const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(o));return o};
-  const p=gl.createProgram();gl.attachShader(p,sh(gl.VERTEX_SHADER,vs));gl.attachShader(p,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(p);gl.useProgram(p);
-  const attr=(n,d)=>{const l=gl.getAttribLocation(p,n);if(l<0)return;const b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(d),gl.STATIC_DRAW);gl.enableVertexAttribArray(l);gl.vertexAttribPointer(l,2,gl.FLOAT,false,0,0)};
-  if(ver===2){const v=gl.createVertexArray();gl.bindVertexArray(v)}
-  attr('position',[-1,-1,3,-1,-1,3]);attr('uv',[0,0,2,0,0,2]);
-  const u=(n,t,v)=>{const l=gl.getUniformLocation(p,n);if(!l)return;
-    if(t==='f')gl.uniform1f(l,v);else if(t==='i')gl.uniform1i(l,v);else if(t==='2')gl.uniform2fv(l,v);else if(t==='3')gl.uniform3fv(l,v);else if(t==='4')gl.uniform4fv(l,v)};
-  return {gl,u,size(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;gl.viewport(0,0,canvas.width,canvas.height)},draw(){gl.drawArrays(gl.TRIANGLES,0,3)}};
-}
-const hex=(h,a)=>{h=h.replace('#','');const c=[0,2,4].map(i=>parseInt(h.slice(i,i+2),16)/255);return a?[...c,1]:c};
+    <section id="about" class="tab">
+      <h1>About us</h1>
+      <blockquote class="goal"><span class="tag">Our goal</span>
+        <p>To give small businesses on the edge of failure the expertise they could never afford alone, so good ideas
+          and hard-working owners get a real second chance.</p>
+      </blockquote>
+      <h2>Mission</h2>
+      <p class="lead">We provide affordable, structured consulting to small businesses that could not otherwise pay for
+        it, while training students on real financial problems. Our model is inspired by student consultancies.</p>
+      <h2>Who we serve</h2>
+      <div class="rows">
+        <div class="row">
+          <h3>3 to 30 employees</h3>
+          <p>Small teams where one good decision moves the whole business.</p>
+        </div>
+        <div class="row">
+          <h3>At least a year in operation</h3>
+          <p>Enough history to build an honest baseline.</p>
+        </div>
+        <div class="row">
+          <h3>Thin or negative margins</h3>
+          <p>Businesses that are busy but not earning.</p>
+        </div>
+      </div>
+      <h2>Founders</h2>
+      <div class="people">
+        <div class="person">
+          <div class="av">AK</div>
+          <div>
+            <h3>Founder One</h3>
+            <div class="role">Co-Founder &amp; Lead Consultant</div>
+            <p>Short bio: background in operations and turnaround strategy.</p>
+          </div>
+        </div>
+        <div class="person">
+          <div class="av">SR</div>
+          <div>
+            <h3>Founder Two</h3>
+            <div class="role">Co-Founder &amp; Finance Lead</div>
+            <p>Short bio: background in small business finance and planning.</p>
+          </div>
+        </div>
+      </div>
+      <h2>Advisory board</h2>
+      <p>Advisors review every baseline P&amp;L before we begin, and are recognised publicly on this page. Bios and
+        photos appear with each advisor's permission.</p>
+      <div class="people">
+        <div class="person">
+          <div class="av">MH</div>
+          <div>
+            <h3>Advisor One</h3>
+            <div class="role">Advisor, Marketing</div>
+            <p>Short bio: helps businesses reach customers on a small budget.</p>
+          </div>
+        </div>
+        <div class="person">
+          <div class="av">LT</div>
+          <div>
+            <h3>Advisor Two</h3>
+            <div class="role">Advisor, Legal &amp; Operations</div>
+            <p>Short bio: guides restructuring, contracts and compliance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-/* ---------- Aurora (reactbits.dev), ported to plain WebGL2 ---------- */
-const AVERT=`#version 300 es
+    <section id="services" class="tab">
+      <h1>Services</h1>
+      <p class="lead">Six practice areas, each aimed at the places small businesses lose money.</p>
+      <div class="rows" style="margin-top:26px">
+        <div class="row">
+          <h3>Finance and pricing</h3>
+          <p>Margins, price points and cash flow, so every sale earns what it should.</p>
+        </div>
+        <div class="row">
+          <h3>Operations and cost</h3>
+          <p>Supplier terms, workflows and overheads trimmed without hurting quality.</p>
+        </div>
+        <div class="row">
+          <h3>Sales and marketing</h3>
+          <p>Low-budget ways to win and keep the customers who are most profitable.</p>
+        </div>
+        <div class="row">
+          <h3>Inventory and waste</h3>
+          <p>Ordering and stock levels matched to demand, with less spoilage.</p>
+        </div>
+        <div class="row">
+          <h3>Staffing and scheduling</h3>
+          <p>Rosters built around real demand, not habit.</p>
+        </div>
+        <div class="row">
+          <h3>Strategy and positioning</h3>
+          <p>A clear answer to what the business is best at, and who it is for.</p>
+        </div>
+      </div>
+
+      <h2>How you pay</h2>
+      <p>Three ways to work with us. We agree the option with you in writing before any work starts.</p>
+      <div class="grid g3">
+        <div class="card pick"><span class="tag">Recommended</span>
+          <h3>Free pilot</h3>
+          <p>No fee for the first cohort. In exchange, we ask for permission to publish case studies, your testimonial,
+            and access to your results data.</p>
+        </div>
+        <div class="card">
+          <h3>Success fee</h3>
+          <p>A small percentage of the verified profit improvement over 6 months.</p>
+        </div>
+        <div class="card">
+          <h3>Flat fee</h3>
+          <p>A low fixed fee per engagement, kept well below traditional consulting rates.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="tab">
+      <h1>How it works</h1>
+      <p class="lead">Four phases, and at each one the owner receives something concrete.</p>
+      <div class="grid g2" style="margin-top:26px">
+        <div class="card"><span class="tag">Phase 1</span>
+          <h3>Diagnose</h3>
+          <p>We record a baseline from your P&amp;L and talk through the business with you.</p>
+          <p class="kv"><b>You receive:</b> a baseline snapshot.</p>
+        </div>
+        <div class="card"><span class="tag">Phase 2</span>
+          <h3>Analyse</h3>
+          <p>We find where margin is leaking and what is causing it.</p>
+          <p class="kv"><b>You receive:</b> your profit leak map.</p>
+        </div>
+        <div class="card"><span class="tag">Phase 3</span>
+          <h3>Redesign</h3>
+          <p>We build options, size their impact and rank them with you.</p>
+          <p class="kv"><b>You receive:</b> prioritised recommendations.</p>
+        </div>
+        <div class="card"><span class="tag">Phase 4</span>
+          <h3>Implement and track</h3>
+          <p>We help you act, then track the same metrics for 3 months.</p>
+          <p class="kv"><b>You receive:</b> an Excel dashboard and a results report.</p>
+        </div>
+      </div>
+      <h2>What you get</h2>
+      <div class="rows">
+        <div class="row">
+          <h3>Baseline snapshot</h3>
+          <p>Where the business stands before we start.</p>
+        </div>
+        <div class="row">
+          <h3>Profit leak map</h3>
+          <p>Every place money escapes, ranked by size.</p>
+        </div>
+        <div class="row">
+          <h3>Prioritised recommendations</h3>
+          <p>What to do first, and what it should be worth.</p>
+        </div>
+        <div class="row">
+          <h3>Implementation roadmap</h3>
+          <p>Who does what, and by when.</p>
+        </div>
+        <div class="row">
+          <h3>Excel dashboard</h3>
+          <p>Your key numbers, updated and easy to read.</p>
+        </div>
+        <div class="row">
+          <h3>3-month results report</h3>
+          <p>Before and after, measured against the baseline.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="proof" class="tab">
+      <h1>Proof, measured the same way every time</h1>
+      <p class="lead">Our first pilot cohort is under way. Results coming Oct 25.</p>
+      <div class="stats">
+        <div class="stat"><b>&mdash;</b><small>Businesses advised</small></div>
+        <div class="stat"><b>&mdash;</b><small>Avg margin improvement (points)</small></div>
+        <div class="stat"><b>&mdash;</b><small>Recommendations implemented</small></div>
+      </div>
+      <div class="note">
+        <p><b style="color:var(--tx)">How we measure.</b> We record a baseline first, then track the same metrics for 3
+          months.</p>
+      </div>
+      <h2>Case studies</h2>
+      <div class="stories">
+        <article class="story">
+          <div class="pic" style="background:linear-gradient(135deg,#1e3a8a,#0ea5e9)"><span>Pilot business 1</span>
+          </div>
+          <div class="txt"><span class="tag">Results coming Oct 25</span>
+            <h3>Pilot business 1</h3>
+            <p class="kv"><b>Problem:</b> to be added.</p>
+            <p class="kv"><b>What we did:</b> to be added.</p>
+            <p class="kv"><b>Before and after:</b> to be added. Anonymised if the owner prefers.</p>
+          </div>
+        </article>
+        <article class="story">
+          <div class="pic" style="background:linear-gradient(135deg,#172554,#38bdf8)"><span>Pilot business 2</span>
+          </div>
+          <div class="txt"><span class="tag">Results coming Oct 25</span>
+            <h3>Pilot business 2</h3>
+            <p class="kv"><b>Problem:</b> to be added.</p>
+            <p class="kv"><b>What we did:</b> to be added.</p>
+            <p class="kv"><b>Before and after:</b> to be added. Anonymised if the owner prefers.</p>
+          </div>
+        </article>
+        <article class="story">
+          <div class="pic" style="background:linear-gradient(135deg,#0c4a6e,#2563eb)"><span>Pilot business 3</span>
+          </div>
+          <div class="txt"><span class="tag">Results coming Oct 25</span>
+            <h3>Pilot business 3</h3>
+            <p class="kv"><b>Problem:</b> to be added.</p>
+            <p class="kv"><b>What we did:</b> to be added.</p>
+            <p class="kv"><b>Before and after:</b> to be added. Anonymised if the owner prefers.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="join" class="tab">
+      <h1>Join our team</h1>
+      <p class="lead">Work on real businesses with real numbers, guided by experienced advisors.</p>
+      <div class="grid g2" style="margin-top:26px">
+        <div class="card">
+          <h3>Who we want</h3>
+          <p>Students who like numbers, enjoy talking to business owners and follow through on commitments.</p>
+        </div>
+        <div class="card">
+          <h3>What you gain</h3>
+          <p>Hands-on consulting experience, advisor feedback on your work, and a case study you can point to.</p>
+        </div>
+      </div>
+      <h2>Apply</h2>
+      <form class="card">
+        <label>Your name<input required name="name"></label>
+        <label>Email<input required type="email" name="email"></label>
+        <label>University and year<input required name="uni"></label>
+        <label>Why do you want to join?<textarea required rows="5" name="why"></textarea></label>
+        <button class="btn" type="submit">Send application</button>
+        <p class="ok">Thanks! Your application was received.</p>
+      </form>
+    </section>
+
+    <section id="faq" class="tab">
+      <h1>Questions owners ask</h1>
+      <div class="faq" style="margin-top:26px">
+        <details>
+          <summary>What does it cost?</summary>
+          <p>You choose between a free pilot, a success fee (a small share of verified profit improvement over 6 months)
+            or a low flat fee. See Services for the details.</p>
+        </details>
+        <details>
+          <summary>How long does it take?</summary>
+          <p>We record your baseline first, then track the same metrics for 3 months.</p>
+        </details>
+        <details>
+          <summary>Is my financial information confidential?</summary>
+          <p>Yes. Your numbers are used only for your engagement, and case studies are anonymised if you prefer.</p>
+        </details>
+        <details>
+          <summary>Who are the students?</summary>
+          <p>University students trained on real financial problems. Advisors review every baseline P&amp;L.</p>
+        </details>
+        <details>
+          <summary>What results can I expect?</summary>
+          <p>We cannot promise a number. We can promise a clear baseline, specific recommendations and honest before and
+            after tracking.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contact" class="tab">
+      <h1>Partner with us</h1>
+      <p class="lead">Tell us about your business and where it's struggling. We'll get back to you.</p>
+      <div class="note">
+        <p><b style="color:var(--tx)">Confidentiality.</b> Everything you share stays private and is used only for your
+          engagement.</p>
+      </div>
+      <form style="margin-top:20px" class="card">
+        <label>Business name<input required name="biz"></label>
+        <label>Sector<input required name="sector" placeholder="e.g. bakery, auto repair, retail"></label>
+        <label>Number of employees<select required name="size">
+            <option value="">Choose one</option>
+            <option>1 to 2</option>
+            <option>3 to 10</option>
+            <option>11 to 30</option>
+            <option>More than 30</option>
+          </select></label>
+        <label>Biggest problem right now<textarea required rows="4" name="problem"></textarea></label>
+        <label>Your name<input required name="name"></label>
+        <label>Email or phone<input required name="contact"></label>
+        <button class="btn" type="submit">Send request</button>
+        <p class="ok">Thanks! Your request was received.</p>
+      </form>
+      <h2>Quick answers</h2>
+      <div class="faq">
+        <details>
+          <summary>Who can apply?</summary>
+          <p>Businesses with 3 to 30 employees, open at least a year, with thin or negative margins.</p>
+        </details>
+        <details>
+          <summary>What happens next?</summary>
+          <p>We review your request, then start with a baseline of your numbers.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+  <footer>&copy; 2026 Revive Consulting</footer>
+
+  <script>
+    function GL(canvas, ver, vs, fs, opt) {
+      const gl = canvas.getContext(ver === 2 ? 'webgl2' : 'webgl', opt || {});
+      const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(o)); return o };
+      const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(p); gl.useProgram(p);
+      const attr = (n, d) => { const l = gl.getAttribLocation(p, n); if (l < 0) return; const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(d), gl.STATIC_DRAW); gl.enableVertexAttribArray(l); gl.vertexAttribPointer(l, 2, gl.FLOAT, false, 0, 0) };
+      if (ver === 2) { const v = gl.createVertexArray(); gl.bindVertexArray(v) }
+      attr('position', [-1, -1, 3, -1, -1, 3]); attr('uv', [0, 0, 2, 0, 0, 2]);
+      const u = (n, t, v) => {
+        const l = gl.getUniformLocation(p, n); if (!l) return;
+        if (t === 'f') gl.uniform1f(l, v); else if (t === 'i') gl.uniform1i(l, v); else if (t === '2') gl.uniform2fv(l, v); else if (t === '3') gl.uniform3fv(l, v); else if (t === '4') gl.uniform4fv(l, v)
+      };
+      return { gl, u, size() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; gl.viewport(0, 0, canvas.width, canvas.height) }, draw() { gl.drawArrays(gl.TRIANGLES, 0, 3) } };
+    }
+    const hex = (h, a) => { h = h.replace('#', ''); const c = [0, 2, 4].map(i => parseInt(h.slice(i, i + 2), 16) / 255); return a ? [...c, 1] : c };
+
+    /* ---------- Aurora (reactbits.dev), ported to plain WebGL2 ---------- */
+    const AVERT = `#version 300 es
 in vec2 position;
 void main(){gl_Position=vec4(position,0.0,1.0);}`;
-const AFRAG=`#version 300 es
+    const AFRAG = `#version 300 es
 precision highp float;
 uniform float uTime;uniform float uAmplitude;uniform vec3 uColorStops[3];uniform vec2 uResolution;uniform float uBlend;
 out vec4 fragColor;
@@ -179,22 +1020,22 @@ void main(){
   float auroraAlpha=smoothstep(midPoint-uBlend*0.5,midPoint+uBlend*0.5,intensity);
   fragColor=vec4(intensity*rampColor*auroraAlpha,auroraAlpha);
 }`;
-(function(){
-  const c=document.getElementById('aurora');
-  const A=GL(c,2,AVERT,AFRAG,{alpha:true,premultipliedAlpha:true,antialias:true});
-  if(!A.gl)return;
-  const gl=A.gl;gl.clearColor(0,0,0,0);gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
-  const stops=[...hex('#1d4ed8'),...hex('#38bdf8'),...hex('#2563eb')];
-  const rs=()=>{A.size();A.u('uResolution','2',[c.width,c.height])};addEventListener('resize',rs);rs();
-  A.u('uAmplitude','f',1.0);A.u('uBlend','f',0.5);A.u('uColorStops','3',stops);
-  (function f(t){requestAnimationFrame(f);A.u('uTime','f',t*0.01*0.1);gl.clear(gl.COLOR_BUFFER_BIT);A.draw()})(0);
-})();
+    (function () {
+      const c = document.getElementById('aurora');
+      const A = GL(c, 2, AVERT, AFRAG, { alpha: true, premultipliedAlpha: true, antialias: true });
+      if (!A.gl) return;
+      const gl = A.gl; gl.clearColor(0, 0, 0, 0); gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+      const stops = [...hex('#1d4ed8'), ...hex('#38bdf8'), ...hex('#2563eb')];
+      const rs = () => { A.size(); A.u('uResolution', '2', [c.width, c.height]) }; addEventListener('resize', rs); rs();
+      A.u('uAmplitude', 'f', 1.0); A.u('uBlend', 'f', 0.5); A.u('uColorStops', '3', stops);
+      (function f(t) { requestAnimationFrame(f); A.u('uTime', 'f', t * 0.01 * 0.1); gl.clear(gl.COLOR_BUFFER_BIT); A.draw() })(0);
+    })();
 
-/* ---------- Grainient (reactbits.dev) loader, ported to plain WebGL2 ---------- */
-const GVERT=`#version 300 es
+    /* ---------- Grainient (reactbits.dev) loader, ported to plain WebGL2 ---------- */
+    const GVERT = `#version 300 es
 in vec2 position;
 void main(){gl_Position=vec4(position,0.0,1.0);}`;
-const GFRAG=`#version 300 es
+    const GFRAG = `#version 300 es
 precision highp float;
 uniform vec2 iResolution;uniform float iTime;uniform float uTimeSpeed;uniform float uColorBalance;uniform float uWarpStrength;
 uniform float uWarpFrequency;uniform float uWarpSpeed;uniform float uWarpAmplitude;uniform float uBlendAngle;uniform float uBlendSoftness;
@@ -242,29 +1083,40 @@ void mainImage(out vec4 o,vec2 C){
   o=vec4(col,1.0);
 }
 void main(){vec4 o=vec4(0.0);mainImage(o,gl_FragCoord.xy);fragColor=o;}`;
-const loader=document.getElementById('loader'),bc=document.getElementById('bal');
-let showing=true;
-const B=GL(bc,2,GVERT,GFRAG);
-if(B.gl){
-  const P={uTimeSpeed:.25,uColorBalance:0,uWarpStrength:1,uWarpFrequency:5,uWarpSpeed:2,uWarpAmplitude:50,uBlendAngle:0,uBlendSoftness:.05,uRotationAmount:500,uNoiseScale:2,uGrainAmount:.1,uGrainScale:2,uGrainAnimated:0,uContrast:1.5,uGamma:1,uSaturation:1,uZoom:.9};
-  for(const k in P)B.u(k,'f',P[k]);
-  B.u('uCenterOffset','2',[0,0]);
-  B.u('uColor1','3',hex('#7dd3fc'));B.u('uColor2','3',hex('#1d4ed8'));B.u('uColor3','3',hex('#0a1530'));
-  const rs=()=>{B.size();B.u('iResolution','2',[bc.width,bc.height])};addEventListener('resize',rs);rs();
-  (function f(t){requestAnimationFrame(f);if(!showing)return;B.u('iTime','f',t*0.001);B.draw()})(0);
-}
-function load(ms,fn){showing=true;loader.classList.remove('off');if(B.gl)B.size();setTimeout(()=>{fn&&fn();loader.classList.add('off');setTimeout(()=>{showing=false},500)},ms)}
+    const loader = document.getElementById('loader'), bc = document.getElementById('bal');
+    let showing = true;
+    const B = GL(bc, 2, GVERT, GFRAG);
+    if (B.gl) {
+      const P = { uTimeSpeed: .25, uColorBalance: 0, uWarpStrength: 1, uWarpFrequency: 5, uWarpSpeed: 2, uWarpAmplitude: 50, uBlendAngle: 0, uBlendSoftness: .05, uRotationAmount: 500, uNoiseScale: 2, uGrainAmount: .1, uGrainScale: 2, uGrainAnimated: 0, uContrast: 1.5, uGamma: 1, uSaturation: 1, uZoom: .9 };
+      for (const k in P) B.u(k, 'f', P[k]);
+      B.u('uCenterOffset', '2', [0, 0]);
+      B.u('uColor1', '3', hex('#7dd3fc')); B.u('uColor2', '3', hex('#1d4ed8')); B.u('uColor3', '3', hex('#0a1530'));
+      const rs = () => { B.size(); B.u('iResolution', '2', [bc.width, bc.height]) }; addEventListener('resize', rs); rs();
+      (function f(t) { requestAnimationFrame(f); if (!showing) return; B.u('iTime', 'f', t * 0.001); B.draw() })(0);
+    }
+    function load(ms, fn) { showing = true; loader.classList.remove('off'); if (B.gl) B.size(); setTimeout(() => { fn && fn(); loader.classList.add('off'); setTimeout(() => { showing = false }, 500) }, ms) }
 
-/* ---------- Tabs, counters, form ---------- */
-function count(){document.querySelectorAll('[data-n]').forEach(e=>{const n=+e.dataset.n,p=e.dataset.p||'',s=e.dataset.s||'',t0=performance.now();
-  (function s_(t){const k=Math.min(1,(t-t0)/1600),v=Math.round(n*(1-Math.pow(1-k,3)));
-  e.textContent=p+(n>=1e6?(v/1e6).toFixed(1)+'M':v.toLocaleString())+s;if(k<1)requestAnimationFrame(s_)})(t0)})}
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
-  if(b.classList.contains('on'))return;
-  load(1100,()=>{document.querySelectorAll('nav button,.tab').forEach(x=>x.classList.remove('on'));
-    b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on');scrollTo(0,0);if(b.dataset.t==='proof')count()})});
-load(2200,count);
-document.getElementById('f').onsubmit=e=>{e.preventDefault();document.getElementById('ok').style.display='block';e.target.reset()};
-</script>
+    /* ---------- Tabs, counters, form ---------- */
+    function count() {
+      document.querySelectorAll('[data-n]').forEach(e => {
+        const n = +e.dataset.n, p = e.dataset.p || '', s = e.dataset.s || '', t0 = performance.now();
+        (function s_(t) {
+          const k = Math.min(1, (t - t0) / 1600), v = Math.round(n * (1 - Math.pow(1 - k, 3)));
+          e.textContent = p + (n >= 1e6 ? (v / 1e6).toFixed(1) + 'M' : v.toLocaleString()) + s; if (k < 1) requestAnimationFrame(s_)
+        })(t0)
+      })
+    }
+    document.querySelectorAll('nav button').forEach(b => b.onclick = () => {
+      if (b.classList.contains('on')) return;
+      load(1100, () => {
+        document.querySelectorAll('nav button,.tab').forEach(x => x.classList.remove('on'));
+        b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on'); scrollTo(0, 0); if (b.dataset.t === 'proof') count()
+      })
+    });
+    load(2200, count);
+    document.querySelectorAll('form').forEach(f => f.onsubmit = e => { e.preventDefault(); f.querySelector('.ok').style.display = 'block'; f.reset() });
+    document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => document.querySelector('nav button[data-t="' + b.dataset.go + '"]').click());
+  </script>
 </body>
+
 </html>
