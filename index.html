@@ -7,14 +7,14 @@
   <title>Revive Consulting</title>
   <style>
     :root {
-      --bg: #050a18;
-      --card: rgba(10, 20, 45, .72);
-      --line: rgba(96, 165, 250, .22);
-      --tx: #e6eefc;
-      --mut: #8fa6cc;
-      --blue: #3b82f6;
-      --glow: #38bdf8;
-      color-scheme: dark;
+      --bg: #f3f7fd;
+      --card: rgba(255, 255, 255, .88);
+      --line: rgba(30, 64, 175, .16);
+      --tx: #0f1f3d;
+      --mut: #4a5f86;
+      --blue: #2563eb;
+      --glow: #0284c7;
+      color-scheme: light;
       box-sizing: border-box;
       padding-top: env(safe-area-inset-top, 0px);
       padding-bottom: env(safe-area-inset-bottom, 0px)
@@ -310,7 +310,8 @@
 
     .ok {
       display: none;
-      color: #7dd3fc
+      color: #0369a1;
+      font-weight: 600
     }
 
     footer {
@@ -324,7 +325,7 @@
       position: fixed;
       inset: 0;
       z-index: 50;
-      background: #050a18;
+      background: #eaf2fd;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -611,7 +612,176 @@
         grid-template-columns: 1fr
       }
     }
+
+    body {
+      background: radial-gradient(900px 520px at 12% -6%, #dbeafe, transparent), radial-gradient(800px 480px at 100% 8%, #e0f2fe, transparent), var(--bg)
+    }
+
+    #aurora {
+      opacity: .5;
+      mix-blend-mode: multiply
+    }
+
+    .logo,
+    h1 {
+      text-shadow: none
+    }
+
+    nav {
+      background: rgba(255, 255, 255, .9);
+      backdrop-filter: none;
+      box-shadow: 0 4px 16px rgba(30, 64, 175, .1)
+    }
+
+    nav button.on {
+      box-shadow: 0 4px 12px rgba(37, 99, 235, .3)
+    }
+
+    .stat b {
+      background: linear-gradient(180deg, #1e3a8a, #0284c7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: none
+    }
+
+    .pic {
+      box-shadow: 0 8px 24px rgba(30, 64, 175, .2)
+    }
+
+    .story .pic {
+      box-shadow: 0 12px 32px rgba(30, 64, 175, .22)
+    }
+
+    .pic,
+    .av {
+      color: #fff
+    }
+
+    .av {
+      box-shadow: 0 4px 14px rgba(37, 99, 235, .3)
+    }
+
+    .goal {
+      box-shadow: none
+    }
+
+    input,
+    textarea,
+    select {
+      background: #fff
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, .18)
+    }
+
+    select option {
+      background: #fff;
+      color: #0f1f3d
+    }
+
+    .btn {
+      box-shadow: 0 6px 18px rgba(37, 99, 235, .28)
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(37, 99, 235, .38)
+    }
+
+    .btn.alt {
+      color: #0369a1;
+      border-color: #0284c7;
+      background: transparent;
+      box-shadow: none
+    }
+
+    .card {
+      background: rgba(255, 255, 255, .85)
+    }
+
+    .card:hover,
+    .card.pick {
+      border-color: rgba(2, 132, 199, .5)
+    }
+
+    #loader div {
+      color: #1e3a8a;
+      text-shadow: none
+    }
+
+    .lang {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--glow);
+      font: 600 14px inherit;
+      font-family: inherit;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer
+    }
+
+    .lang:hover {
+      border-color: var(--glow)
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 48px;
+      margin: 26px 0 10px
+    }
+
+    .step {
+      border-inline-start: 2px solid var(--line);
+      padding: 2px 0;
+      padding-inline-start: 20px
+    }
+
+    .step h3 {
+      margin: 6px 0
+    }
+
+    .step p {
+      margin: 0 0 6px
+    }
+
+    @media(max-width:760px) {
+      .steps {
+        grid-template-columns: 1fr
+      }
+    }
+
+    [dir=rtl] body {
+      font-family: 'Noto Naskh Arabic', 'Segoe UI', Tahoma, sans-serif;
+      line-height: 1.9
+    }
+
+    [dir=rtl] h1,
+    [dir=rtl] h2,
+    [dir=rtl] h3 {
+      line-height: 1.5
+    }
+
+    [dir=rtl] .goal,
+    [dir=rtl] .note {
+      border-left: 0;
+      border-right: 3px solid var(--glow);
+      padding-left: 0;
+      padding-right: 20px
+    }
+
+    @media(min-width:761px) {
+      [dir=rtl] .stat+.stat {
+        border-left: 0;
+        border-right: 1px solid var(--line)
+      }
+    }
   </style>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&display=swap">
 </head>
 
 <body>
@@ -632,6 +802,7 @@
       <button data-t="faq">FAQ</button>
       <button data-t="contact">Partner</button>
     </nav>
+    <button id="lang" class="lang" type="button">اردو</button>
   </header>
 
   <main>
@@ -783,23 +954,23 @@
     <section id="process" class="tab">
       <h1>How it works</h1>
       <p class="lead">Four phases, and at each one the owner receives something concrete.</p>
-      <div class="grid g2" style="margin-top:26px">
-        <div class="card"><span class="tag">Phase 1</span>
+      <div class="steps">
+        <div class="step"><span class="tag">Phase 1</span>
           <h3>Diagnose</h3>
           <p>We record a baseline from your P&amp;L and talk through the business with you.</p>
           <p class="kv"><b>You receive:</b> a baseline snapshot.</p>
         </div>
-        <div class="card"><span class="tag">Phase 2</span>
+        <div class="step"><span class="tag">Phase 2</span>
           <h3>Analyse</h3>
           <p>We find where margin is leaking and what is causing it.</p>
           <p class="kv"><b>You receive:</b> your profit leak map.</p>
         </div>
-        <div class="card"><span class="tag">Phase 3</span>
+        <div class="step"><span class="tag">Phase 3</span>
           <h3>Redesign</h3>
           <p>We build options, size their impact and rank them with you.</p>
           <p class="kv"><b>You receive:</b> prioritised recommendations.</p>
         </div>
-        <div class="card"><span class="tag">Phase 4</span>
+        <div class="step"><span class="tag">Phase 4</span>
           <h3>Implement and track</h3>
           <p>We help you act, then track the same metrics for 3 months.</p>
           <p class="kv"><b>You receive:</b> an Excel dashboard and a results report.</p>
@@ -1090,7 +1261,7 @@ void main(){vec4 o=vec4(0.0);mainImage(o,gl_FragCoord.xy);fragColor=o;}`;
       const P = { uTimeSpeed: .25, uColorBalance: 0, uWarpStrength: 1, uWarpFrequency: 5, uWarpSpeed: 2, uWarpAmplitude: 50, uBlendAngle: 0, uBlendSoftness: .05, uRotationAmount: 500, uNoiseScale: 2, uGrainAmount: .1, uGrainScale: 2, uGrainAnimated: 0, uContrast: 1.5, uGamma: 1, uSaturation: 1, uZoom: .9 };
       for (const k in P) B.u(k, 'f', P[k]);
       B.u('uCenterOffset', '2', [0, 0]);
-      B.u('uColor1', '3', hex('#7dd3fc')); B.u('uColor2', '3', hex('#1d4ed8')); B.u('uColor3', '3', hex('#0a1530'));
+      B.u('uColor1', '3', hex('#bae6fd')); B.u('uColor2', '3', hex('#60a5fa')); B.u('uColor3', '3', hex('#eaf2fd'));
       const rs = () => { B.size(); B.u('iResolution', '2', [bc.width, bc.height]) }; addEventListener('resize', rs); rs();
       (function f(t) { requestAnimationFrame(f); if (!showing) return; B.u('iTime', 'f', t * 0.001); B.draw() })(0);
     }
@@ -1116,6 +1287,25 @@ void main(){vec4 o=vec4(0.0);mainImage(o,gl_FragCoord.xy);fragColor=o;}`;
     load(2200, count);
     document.querySelectorAll('form').forEach(f => f.onsubmit = e => { e.preventDefault(); f.querySelector('.ok').style.display = 'block'; f.reset() });
     document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => document.querySelector('nav button[data-t="' + b.dataset.go + '"]').click());
+  </script>
+  <script>
+    (function () {
+      const UR = { "Home": "ہوم", "About": "ہمارے بارے میں", "Services": "خدمات", "Process": "طریقہ کار", "Proof": "نتائج", "Join": "شامل ہوں", "FAQ": "عمومی سوالات", "Partner": "شراکت", "We help struggling businesses": "ہم مشکلات کا شکار کاروباروں کو", "become profitable.": "منافع بخش بننے میں مدد دیتے ہیں۔", "Student-led, advisor-backed, built for small businesses.": "طلبہ کی قیادت میں، مشیروں کی معاونت کے ساتھ، چھوٹے کاروباروں کے لیے بنایا گیا۔", "Partner With Us": "ہمارے ساتھ شراکت کریں", "Join Our Team": "ہماری ٹیم میں شامل ہوں", "Why small businesses fail": "چھوٹے کاروبار کیوں ناکام ہوتے ہیں", "Thin margins": "کم منافع", "Many owners work full time and still keep almost nothing, because prices and costs have drifted apart.": "بہت سے مالکان پورا وقت کام کرتے ہیں مگر بچت تقریباً نہ ہونے کے برابر رہتی ہے، کیونکہ قیمتوں اور اخراجات میں فاصلہ بڑھ چکا ہوتا ہے۔", "Hidden waste": "پوشیدہ ضیاع", "Spoilage, idle hours and unused stock quietly drain cash without ever showing up as a single big problem.": "خراب ہونے والا مال، فارغ اوقات اور غیر استعمال شدہ اسٹاک خاموشی سے نقدی کھا جاتے ہیں، اور کبھی ایک بڑے مسئلے کے طور پر نظر نہیں آتے۔", "No financial visibility": "مالی صورتحال کی واضح تصویر کا فقدان", "Without a clear view of the numbers, owners decide by instinct and notice trouble only when cash runs out.": "اعداد و شمار کی واضح تصویر کے بغیر مالکان اندازے سے فیصلے کرتے ہیں اور مسئلہ تب نظر آتا ہے جب نقدی ختم ہو جاتی ہے۔", "Our mission": "ہمارا مشن", "Affordable, structured consulting for small businesses that could not otherwise pay for it, delivered by students learning on real financial problems.": "چھوٹے کاروباروں کے لیے سستی اور منظم مشاورت، جو وہ عام طور پر برداشت نہیں کر سکتے، اور جو حقیقی مالی مسائل پر سیکھنے والے طلبہ فراہم کرتے ہیں۔", "About us": "ہمارے بارے میں", "Our goal": "ہمارا مقصد", "To give small businesses on the edge of failure the expertise they could never afford alone, so good ideas and hard-working owners get a real second chance.": "ناکامی کے دہانے پر کھڑے چھوٹے کاروباروں کو وہ مہارت دینا جو وہ اکیلے کبھی حاصل نہ کر سکتے، تاکہ اچھے خیالات اور محنتی مالکان کو حقیقی دوسرا موقع ملے۔", "Mission": "مشن", "We provide affordable, structured consulting to small businesses that could not otherwise pay for it, while training students on real financial problems. Our model is inspired by student consultancies.": "ہم ان چھوٹے کاروباروں کو سستی اور منظم مشاورت فراہم کرتے ہیں جو اس کی قیمت ادا نہیں کر سکتے، اور ساتھ ہی طلبہ کو حقیقی مالی مسائل پر تربیت دیتے ہیں۔ ہمارا ماڈل طلبہ کے مشاورتی اداروں سے متاثر ہے۔", "Who we serve": "ہم کن کی خدمت کرتے ہیں", "3 to 30 employees": "3 سے 30 ملازمین", "Small teams where one good decision moves the whole business.": "چھوٹی ٹیمیں جہاں ایک اچھا فیصلہ پورے کاروبار کو آگے بڑھا دیتا ہے۔", "At least a year in operation": "کم از کم ایک سال سے جاری", "Enough history to build an honest baseline.": "ایک ایماندار بنیادی ریکارڈ بنانے کے لیے کافی تاریخ۔", "Thin or negative margins": "کم یا منفی منافع", "Businesses that are busy but not earning.": "ایسے کاروبار جو مصروف تو ہیں مگر کما نہیں رہے۔", "Founders": "بانی", "Founder One": "بانی اول", "Co-Founder & Lead Consultant": "شریک بانی اور مرکزی کنسلٹنٹ", "Short bio: background in operations and turnaround strategy.": "مختصر تعارف: آپریشنز اور کاروباری بحالی کی حکمت عملی کا پس منظر۔", "Founder Two": "بانی دوم", "Co-Founder & Finance Lead": "شریک بانی اور سربراہ مالیات", "Short bio: background in small business finance and planning.": "مختصر تعارف: چھوٹے کاروبار کی مالیات اور منصوبہ بندی کا پس منظر۔", "Advisory board": "مشاورتی بورڈ", "Advisors review every baseline P&L before we begin, and are recognised publicly on this page. Bios and photos appear with each advisor's permission.": "مشیر کام شروع ہونے سے پہلے ہر بنیادی منافع و نقصان کے گوشوارے کا جائزہ لیتے ہیں، اور اس صفحے پر انہیں عوامی طور پر سراہا جاتا ہے۔ تعارف اور تصاویر ہر مشیر کی اجازت سے شائع کی جاتی ہیں۔", "Advisor One": "مشیر اول", "Advisor, Marketing": "مشیر، مارکیٹنگ", "Short bio: helps businesses reach customers on a small budget.": "مختصر تعارف: کاروباروں کو محدود بجٹ میں گاہکوں تک پہنچنے میں مدد دیتے ہیں۔", "Advisor Two": "مشیر دوم", "Advisor, Legal & Operations": "مشیر، قانون اور آپریشنز", "Short bio: guides restructuring, contracts and compliance.": "مختصر تعارف: تنظیمِ نو، معاہدوں اور قانونی تقاضوں میں رہنمائی کرتے ہیں۔", "Six practice areas, each aimed at the places small businesses lose money.": "چھ شعبے، ہر ایک ان جگہوں پر مرکوز جہاں چھوٹے کاروبار پیسہ کھوتے ہیں۔", "Finance and pricing": "مالیات اور قیمتوں کا تعین", "Margins, price points and cash flow, so every sale earns what it should.": "منافع کے مارجن، قیمتیں اور نقدی کا بہاؤ، تاکہ ہر فروخت اتنا کمائے جتنا اسے کمانا چاہیے۔", "Operations and cost": "آپریشنز اور لاگت", "Supplier terms, workflows and overheads trimmed without hurting quality.": "سپلائر کی شرائط، کام کے طریقے اور اوور ہیڈ اخراجات میں معیار متاثر کیے بغیر کمی۔", "Sales and marketing": "سیلز اور مارکیٹنگ", "Low-budget ways to win and keep the customers who are most profitable.": "کم بجٹ میں ان گاہکوں کو حاصل کرنے اور برقرار رکھنے کے طریقے جو سب سے زیادہ منافع بخش ہیں۔", "Inventory and waste": "اسٹاک اور ضیاع", "Ordering and stock levels matched to demand, with less spoilage.": "طلب کے مطابق آرڈر اور اسٹاک کی سطح، اور کم خرابی۔", "Staffing and scheduling": "عملہ اور شیڈول", "Rosters built around real demand, not habit.": "عادت نہیں بلکہ حقیقی طلب کی بنیاد پر بنائے گئے ڈیوٹی روسٹر۔", "Strategy and positioning": "حکمت عملی اور مقام کا تعین", "A clear answer to what the business is best at, and who it is for.": "اس سوال کا واضح جواب کہ کاروبار کس کام میں بہترین ہے اور کس کے لیے ہے۔", "How you pay": "ادائیگی کیسے کریں", "Three ways to work with us. We agree the option with you in writing before any work starts.": "ہمارے ساتھ کام کرنے کے تین طریقے۔ کام شروع ہونے سے پہلے ہم آپ کے ساتھ تحریری طور پر آپشن طے کرتے ہیں۔", "Recommended": "تجویز کردہ", "Free pilot": "مفت پائلٹ", "No fee for the first cohort. In exchange, we ask for permission to publish case studies, your testimonial, and access to your results data.": "پہلے گروپ کے لیے کوئی فیس نہیں۔ اس کے بدلے ہم کیس اسٹڈیز شائع کرنے، آپ کی رائے لینے، اور آپ کے نتائج کے ڈیٹا تک رسائی کی اجازت مانگتے ہیں۔", "Success fee": "کامیابی کی فیس", "A small percentage of the verified profit improvement over 6 months.": "6 ماہ میں تصدیق شدہ منافع میں بہتری کا ایک معمولی فیصد۔", "Flat fee": "مقررہ فیس", "A low fixed fee per engagement, kept well below traditional consulting rates.": "فی منصوبہ ایک کم مقررہ فیس، جو روایتی مشاورتی نرخوں سے کافی کم رکھی گئی ہے۔", "How it works": "یہ کیسے کام کرتا ہے", "Four phases, and at each one the owner receives something concrete.": "چار مراحل، اور ہر مرحلے پر مالک کو کوئی ٹھوس چیز ملتی ہے۔", "Phase 1": "مرحلہ 1", "Diagnose": "تشخیص", "We record a baseline from your P&L and talk through the business with you.": "ہم آپ کے منافع و نقصان کے گوشوارے سے بنیادی صورتحال ریکارڈ کرتے ہیں اور آپ کے ساتھ کاروبار پر بات کرتے ہیں۔", "You receive:": "آپ کو ملے گا:", "a baseline snapshot.": "بنیادی صورتحال کا خلاصہ۔", "Phase 2": "مرحلہ 2", "Analyse": "تجزیہ", "We find where margin is leaking and what is causing it.": "ہم معلوم کرتے ہیں کہ منافع کہاں ضائع ہو رہا ہے اور اس کی وجہ کیا ہے۔", "your profit leak map.": "آپ کا منافع کے رساؤ کا نقشہ۔", "Phase 3": "مرحلہ 3", "Redesign": "از سرِ نو ترتیب", "We build options, size their impact and rank them with you.": "ہم متبادل تیار کرتے ہیں، ان کے اثر کا اندازہ لگاتے ہیں اور آپ کے ساتھ انہیں ترجیح دیتے ہیں۔", "prioritised recommendations.": "ترجیحی سفارشات۔", "Phase 4": "مرحلہ 4", "Implement and track": "عمل درآمد اور نگرانی", "We help you act, then track the same metrics for 3 months.": "ہم عمل کرنے میں مدد دیتے ہیں، پھر 3 ماہ تک انہی پیمانوں کو ٹریک کرتے ہیں۔", "an Excel dashboard and a results report.": "ایک ایکسل ڈیش بورڈ اور نتائج کی رپورٹ۔", "What you get": "آپ کو کیا ملتا ہے", "Baseline snapshot": "بنیادی صورتحال کا خلاصہ", "Where the business stands before we start.": "کام شروع ہونے سے پہلے کاروبار کہاں کھڑا ہے۔", "Profit leak map": "منافع کے رساؤ کا نقشہ", "Every place money escapes, ranked by size.": "پیسہ جہاں جہاں ضائع ہوتا ہے، حجم کے لحاظ سے ترتیب وار۔", "Prioritised recommendations": "ترجیحی سفارشات", "What to do first, and what it should be worth.": "پہلے کیا کرنا ہے، اور اس کی قدر کیا ہونی چاہیے۔", "Implementation roadmap": "عمل درآمد کا روڈ میپ", "Who does what, and by when.": "کون کیا کرے گا، اور کب تک۔", "Excel dashboard": "ایکسل ڈیش بورڈ", "Your key numbers, updated and easy to read.": "آپ کے اہم اعداد و شمار، تازہ ترین اور آسانی سے پڑھنے کے قابل۔", "3-month results report": "3 ماہ کی نتائج کی رپورٹ", "Before and after, measured against the baseline.": "پہلے اور بعد کی صورتحال، بنیادی ریکارڈ کے مقابلے میں۔", "Proof, measured the same way every time": "نتائج، ہر بار ایک ہی طریقے سے ناپے گئے", "Our first pilot cohort is under way. Results coming Oct 25.": "ہمارا پہلا پائلٹ گروپ کام کر رہا ہے۔ نتائج 25 اکتوبر کو آئیں گے۔", "Businesses advised": "مشورہ لینے والے کاروبار", "Avg margin improvement (points)": "اوسط منافع میں بہتری (پوائنٹس)", "Recommendations implemented": "نافذ کی گئی سفارشات", "How we measure.": "ہم کیسے ناپتے ہیں۔", "We record a baseline first, then track the same metrics for 3 months.": "ہم پہلے بنیادی ریکارڈ بناتے ہیں، پھر 3 ماہ تک انہی پیمانوں کو ٹریک کرتے ہیں۔", "Case studies": "کیس اسٹڈیز", "Pilot business 1": "پائلٹ کاروبار 1", "Pilot business 2": "پائلٹ کاروبار 2", "Pilot business 3": "پائلٹ کاروبار 3", "Results coming Oct 25": "نتائج 25 اکتوبر کو آئیں گے", "Problem:": "مسئلہ:", "to be added.": "جلد شامل کیا جائے گا۔", "What we did:": "ہم نے کیا کیا:", "Before and after:": "پہلے اور بعد:", "to be added. Anonymised if the owner prefers.": "جلد شامل کیا جائے گا۔ مالک چاہے تو نام ظاہر نہیں کیا جائے گا۔", "Join our team": "ہماری ٹیم میں شامل ہوں", "Work on real businesses with real numbers, guided by experienced advisors.": "حقیقی کاروباروں پر حقیقی اعداد و شمار کے ساتھ کام کریں، تجربہ کار مشیروں کی رہنمائی میں۔", "Who we want": "ہم کن کو چاہتے ہیں", "Students who like numbers, enjoy talking to business owners and follow through on commitments.": "ایسے طلبہ جنہیں اعداد و شمار پسند ہوں، جو کاروباری مالکان سے بات کرنے سے لطف اٹھاتے ہوں اور اپنی ذمہ داریاں پوری کرتے ہوں۔", "What you gain": "آپ کو کیا حاصل ہوگا", "Hands-on consulting experience, advisor feedback on your work, and a case study you can point to.": "مشاورت کا عملی تجربہ، آپ کے کام پر مشیروں کی رائے، اور ایک کیس اسٹڈی جس کا آپ حوالہ دے سکیں۔", "Apply": "درخواست دیں", "Your name": "آپ کا نام", "Email": "ای میل", "University and year": "یونیورسٹی اور سال", "Why do you want to join?": "آپ ہمارے ساتھ کیوں شامل ہونا چاہتے ہیں؟", "Send application": "درخواست جمع کرائیں", "Thanks! Your application was received.": "شکریہ! آپ کی درخواست موصول ہو گئی ہے۔", "Questions owners ask": "مالکان کے سوالات", "What does it cost?": "اس کی قیمت کیا ہے؟", "You choose between a free pilot, a success fee (a small share of verified profit improvement over 6 months) or a low flat fee. See Services for the details.": "آپ مفت پائلٹ، کامیابی کی فیس (6 ماہ میں تصدیق شدہ منافع کی بہتری کا معمولی حصہ) یا کم مقررہ فیس میں سے انتخاب کر سکتے ہیں۔ تفصیل کے لیے خدمات دیکھیں۔", "How long does it take?": "اس میں کتنا وقت لگتا ہے؟", "We record your baseline first, then track the same metrics for 3 months.": "ہم پہلے آپ کا بنیادی ریکارڈ بناتے ہیں، پھر 3 ماہ تک انہی پیمانوں کو ٹریک کرتے ہیں۔", "Is my financial information confidential?": "کیا میری مالی معلومات خفیہ رہتی ہیں؟", "Yes. Your numbers are used only for your engagement, and case studies are anonymised if you prefer.": "جی ہاں۔ آپ کے اعداد و شمار صرف آپ کے کام کے لیے استعمال ہوتے ہیں، اور اگر آپ چاہیں تو کیس اسٹڈیز میں نام ظاہر نہیں کیا جاتا۔", "Who are the students?": "طلبہ کون ہیں؟", "University students trained on real financial problems. Advisors review every baseline P&L.": "یونیورسٹی کے طلبہ جنہیں حقیقی مالی مسائل پر تربیت دی گئی ہے۔ مشیر ہر بنیادی منافع و نقصان کے گوشوارے کا جائزہ لیتے ہیں۔", "What results can I expect?": "میں کیا نتائج توقع کر سکتا ہوں؟", "We cannot promise a number. We can promise a clear baseline, specific recommendations and honest before and after tracking.": "ہم کسی خاص عدد کا وعدہ نہیں کر سکتے۔ ہم ایک واضح بنیادی ریکارڈ، مخصوص سفارشات اور پہلے اور بعد کی ایماندار نگرانی کا وعدہ کر سکتے ہیں۔", "Partner with us": "ہمارے ساتھ شراکت کریں", "Tell us about your business and where it's struggling. We'll get back to you.": "ہمیں اپنے کاروبار اور اس کی مشکلات کے بارے میں بتائیں۔ ہم آپ سے رابطہ کریں گے۔", "Confidentiality.": "رازداری۔", "Everything you share stays private and is used only for your engagement.": "آپ جو کچھ بتاتے ہیں وہ نجی رہتا ہے اور صرف آپ کے کام کے لیے استعمال ہوتا ہے۔", "Business name": "کاروبار کا نام", "Sector": "شعبہ", "Number of employees": "ملازمین کی تعداد", "Choose one": "ایک منتخب کریں", "1 to 2": "1 سے 2", "3 to 10": "3 سے 10", "11 to 30": "11 سے 30", "More than 30": "30 سے زیادہ", "Biggest problem right now": "اس وقت سب سے بڑا مسئلہ", "Email or phone": "ای میل یا فون", "Send request": "درخواست بھیجیں", "Thanks! Your request was received.": "شکریہ! آپ کی درخواست موصول ہو گئی ہے۔", "Quick answers": "فوری جوابات", "Who can apply?": "کون درخواست دے سکتا ہے؟", "Businesses with 3 to 30 employees, open at least a year, with thin or negative margins.": "3 سے 30 ملازمین والے کاروبار، جو کم از کم ایک سال سے چل رہے ہوں اور جن کا منافع کم یا منفی ہو۔", "What happens next?": "آگے کیا ہوتا ہے؟", "We review your request, then start with a baseline of your numbers.": "ہم آپ کی درخواست کا جائزہ لیتے ہیں، پھر آپ کے اعداد و شمار کے بنیادی ریکارڈ سے آغاز کرتے ہیں۔" }, PH = { "e.g. bakery, auto repair, retail": "مثلاً بیکری، گاڑیوں کی مرمت، ریٹیل" }, orig = new Map(); let ur = false;
+      function nodes(r) { const w = document.createTreeWalker(r, NodeFilter.SHOW_TEXT), a = []; let n; while (n = w.nextNode()) a.push(n); return a }
+      function apply() {
+        const d = document.documentElement; d.lang = ur ? 'ur' : 'en'; d.dir = ur ? 'rtl' : 'ltr';
+        document.querySelectorAll('header,main,footer').forEach(r => nodes(r).forEach(n => {
+          if (ur) { const k = n.nodeValue.trim(); if (UR[k]) { orig.set(n, n.nodeValue); n.nodeValue = n.nodeValue.replace(k, UR[k]) } }
+          else if (orig.has(n)) { n.nodeValue = orig.get(n); orig.delete(n) }
+        }));
+        document.querySelectorAll('[placeholder]').forEach(e => {
+          if (ur && PH[e.placeholder]) { e.dataset.en = e.placeholder; e.placeholder = PH[e.dataset.en] }
+          else if (!ur && e.dataset.en) { e.placeholder = e.dataset.en }
+        });
+        document.getElementById('lang').textContent = ur ? 'English' : 'اردو';
+      }
+      document.getElementById('lang').onclick = () => { ur = !ur; apply() };
+    })();
   </script>
 </body>
 
